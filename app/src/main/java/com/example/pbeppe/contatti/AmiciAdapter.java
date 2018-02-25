@@ -19,6 +19,8 @@ public class AmiciAdapter extends BaseAdapter{
     int photo[];
     LayoutInflater inflater;
 
+
+
     public AmiciAdapter(Context appContext, String[] nomiamici,int[]fotoamici){
     this.context=appContext;
     this.amici=nomiamici;
@@ -26,6 +28,14 @@ public class AmiciAdapter extends BaseAdapter{
     inflater= (LayoutInflater.from(appContext));
 
     }
+
+
+    private static class ViewHolder{
+        TextView amico;
+        ImageView img;
+    }
+
+
 
     @Override
     public int getCount() {
@@ -44,11 +54,24 @@ public class AmiciAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView=inflater.inflate(R.layout.layadapter,null);
-        TextView txtamico=(TextView)convertView.findViewById(R.id.txt_contatti);
-        ImageView fotoamico=(ImageView)convertView.findViewById(R.id.foto_contatti);
-        txtamico.setText(amici[position]);
-        fotoamico.setImageResource(photo[position]);
+
+        ViewHolder viewHolder;
+
+        if (convertView==null)
+        {
+            convertView=inflater.inflate(R.layout.layadapter,null);
+            viewHolder=new ViewHolder();
+            viewHolder.amico=(TextView)convertView.findViewById(R.id.txt_contatti);
+            viewHolder.img=(ImageView)convertView.findViewById(R.id.foto_contatti);
+        }
+        else
+        {
+            viewHolder=(ViewHolder)convertView.getTag();
+        }
+
+
+       viewHolder.amico.setText(amici[position]);
+       viewHolder.img.setImageResource(photo[position]);
         return convertView;
     }
 }
