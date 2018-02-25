@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Contatti</string>
+
+
+    <string name="contatti">Contatti</string>
+    <string name="immagine_contatti">Immagine Contatti</string>
 </resources>
